@@ -56,7 +56,7 @@ contract ChatApp {
     function _addFriend(
         address user,
         address friend_key,
-        string calldata name
+        string memory name
     ) internal {
         userList[user].friendList.push(friend(friend_key, name));
     }
@@ -80,14 +80,14 @@ contract ChatApp {
         return false;
     }
 
-    function _addFriend(
-        address me,
-        address friend_key,
-        string memory name
-    ) internal {
-        friend memory newFriend = friend(friend_key, name);
-        userList[me].friendList.push(newFriend);
-    }
+    // function _addFriend(
+    //     address me,
+    //     address friend_key,
+    //     string memory name
+    // ) internal {
+    //     friend memory newFriend = friend(friend_key, name);
+    //     userList[me].friendList.push(newFriend);
+    // }
     //get my friend
     function getMyFriendList() external view returns (friend[] memory) {
         return userList[msg.sender].friendList;
@@ -113,7 +113,7 @@ contract ChatApp {
             checkAlreadyFriend(msg.sender, friend_key),
             "You are not friends"
         );
-        bytes32 chatCode = getChatCode(msg.sender, friend_key);
+        bytes32 chatCode = _getChatCode(msg.sender, friend_key);
         message memory newMessage = message(msg.sender, block.timestamp, _msg);
         allMessages[chatCode].push(newMessage);
     }

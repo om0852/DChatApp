@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Filter = () => {
+const Error = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Filter = () => {
   )
 }
 
-export default Filter
+export default Error
