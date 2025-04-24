@@ -112,10 +112,10 @@ export const ChatAppProvider = ({ children }) => {
 
   const sendMessage = async ({ msg, address }) => {
     try {
-      if (!msg || !address) {
-        setError("Please Type Your Message");
-        return;
-      }
+      // if (!msg || !address) {
+      //   setError("Please Type Your Message");
+      //   return;
+      // }
       const { contract, account: currentAccount } = await connectingWithContract();
       const tx = await contract.methods.sendMessage(address, msg).send({ from: currentAccount });
       await tx;
