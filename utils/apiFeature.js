@@ -5,41 +5,64 @@ import {ChatAppAddress, ChatAppABI} from "../Context/constants";
 
 export const CheckIfWalletIsConnected = async () => {
     try {
-        if(!window.ethereum) throw new Error("Please install metamask");
+        if (!window.ethereum) throw new Error("Please install MetaMask");
+        
         const accounts = await window.ethereum.request({
             method: "eth_accounts",
         });
-        if(accounts.length === 0) throw new Error("No account found");
-        const account = accounts[0];
-        return account;
+
+        if (accounts.length === 0) {
+            throw new Error("No authorized accounts found. Please connect your wallet.");
+        }
+
+        return accounts[0];
     } catch (error) {
-        console.log("Install metamask");
+        console.error("Wallet connection check failed:", error);
+        throw error;
     }
 }
 
 export const ConnectWallet = async () => {
     try {
-        if(!window.ethereum) alert("Please install metamask");
+        if (!window.ethereum) {
+            throw new Error("Please install MetaMask");
+        }
+
+        // Request account access
         const accounts = await window.ethereum.request({
             method: "eth_requestAccounts",
         });
+
+        if (accounts.length === 0) {
+            throw new Error("No accounts found. Please connect your wallet.");
+        }
+
         return accounts[0];
     } catch (error) {
-        console.log(error);
+        console.error("Connect wallet error:", error);
+        if (error.code === 4001) {
+            throw new Error("Please accept the connection request in MetaMask");
+        }
+        throw error;
     }
 }
 
-const fetchContract = (web3) => {
+const fetchContract = (web3, account) => {
     try {
-        // Ensure ABI is properly formatted
         if (!ChatAppABI || !Array.isArray(ChatAppABI)) {
             throw new Error('Invalid ABI format');
         }
         
-        return new web3.eth.Contract(
+        const contract = new web3.eth.Contract(
             ChatAppABI,
-            ChatAppAddress
+            ChatAppAddress,
+            {
+                from: account,
+                gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
+            }
         );
+
+        return contract;
     } catch (error) {
         console.error("Error in fetchContract:", error);
         throw error;
@@ -48,33 +71,45 @@ const fetchContract = (web3) => {
 
 export const connectingWithContract = async () => {
     try {
-        if (!window.ethereum) throw new Error("Please install MetaMask");
+        if (!window.ethereum) {
+            throw new Error("Please install MetaMask");
+        }
 
-        const web3Modal = new Web3Modal();
-        const connection = await web3Modal.connect();
-        
-        // Create Web3 instance
-        const web3 = new Web3(connection);
-        
-        // Get the contract instance
-        const contract = await fetchContract(web3);
-        
-        // Get the connected account
-        const accounts = await web3.eth.getAccounts();
+        // First get the account
+        const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+        });
+
+        if (accounts.length === 0) {
+            throw new Error("No accounts found. Please connect your wallet.");
+        }
+
         const account = accounts[0];
+
+        // Then setup Web3
+        const web3Modal = new Web3Modal({
+            cacheProvider: true,
+            providerOptions: {}
+        });
+
+        const connection = await web3Modal.connect();
+        const web3 = new Web3(connection);
+
+        // Get the contract instance with the connected account
+        const contract = await fetchContract(web3, account);
         
+        if (!contract) {
+            throw new Error("Failed to initialize contract");
+        }
+
         return {
-            contract: contract,
-            account: account,
-            web3: web3
+            contract,
+            account,
+            web3
         };
     } catch (error) {
         console.error("Error connecting to contract:", error);
-        return {
-            contract: null,
-            account: null,
-            web3: null
-        };
+        throw error;
     }
 }
 

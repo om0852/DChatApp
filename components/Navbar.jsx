@@ -31,7 +31,13 @@ const Navbar = () => {
       <div className={Style.container}>
         {/* Logo */}
         <div className={Style.logo}>
-          <Image src={images.logo} alt="DChat Logo" width={40} height={40} />
+          <Image 
+            src={images.logo} 
+            alt="DChat Logo" 
+            width={40} 
+            height={40} 
+            priority={true}
+          />
           <span className={Style.logoText}>DChat</span>
         </div>
 
@@ -55,7 +61,13 @@ const Navbar = () => {
         <div className={Style.walletSection}>
           {account === "" ? (
             <button onClick={ConnectWallet} className={Style.connectButton}>
-              <Image src={images.create} width={20} height={20} alt="connect" />
+              <Image 
+                src={images.create} 
+                width={20} 
+                height={20} 
+                alt="connect" 
+                priority={true}
+              />
               <span>Connect Wallet</span>
             </button>
           ) : (
@@ -68,6 +80,7 @@ const Navbar = () => {
                 alt="account"
                 width={20}
                 height={20}
+                priority={true}
               />
               <span>{userName || "Create Account"}</span>
             </button>
@@ -85,6 +98,7 @@ const Navbar = () => {
             width={24} 
             height={24} 
             alt="menu" 
+            priority={true}
           />
         </button>
       </div>

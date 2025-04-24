@@ -1,0 +1,130 @@
+.UserCard {
+    background-color: rgba(23, 23, 28, 0.95);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.UserCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.UserCard_box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.UserCard_box img {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #F18303;
+    padding: 0.2rem;
+    transition: transform 0.3s ease;
+}
+
+.UserCard_box:hover img {
+    transform: scale(1.05);
+}
+
+.UserCard_box_info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.UserCard_box_info h3 {
+    color: #F18303;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.UserCard_box_info p {
+    color: #d1d1d1;
+    font-size: 0.9rem;
+    margin: 0;
+    word-break: break-all;
+}
+
+.UserCard_box_info button {
+    background-color: #F18303;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+    margin-top: 0.5rem;
+}
+
+.UserCard_box_info button:hover {
+    background-color: #d67503;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(241, 131, 3, 0.3);
+}
+
+.UserCard_box_info button:active {
+    transform: translateY(0);
+}
+
+.number {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(241, 131, 3, 0.2);
+    color: #F18303;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .UserCard_box {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .UserCard_box_info {
+        align-items: center;
+    }
+
+    .UserCard_box_info p {
+        font-size: 0.8rem;
+    }
+
+    .number {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .UserCard {
+        padding: 0.5rem;
+    }
+
+    .UserCard_box {
+        padding: 0.5rem;
+    }
+
+    .UserCard_box_info h3 {
+        font-size: 1.2rem;
+    }
+
+    .UserCard_box_info button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}

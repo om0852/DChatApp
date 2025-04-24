@@ -6,7 +6,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <div>
       <ChatAppProvider>
-        <Navbar/>
+      <Navbar/>
         <Component {...pageProps} />
         
       </ChatAppProvider>

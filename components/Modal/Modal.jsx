@@ -25,7 +25,13 @@ const Modal = ({
     <div className={Style.Model}>
       <div className={Style.Model_box}>
         <div className={Style.Model_boc_left}>
-          <Image src={image} alt="image" width={700} height={700} />
+          <Image 
+            src={image} 
+            alt="hero" 
+            width={700} 
+            height={700} 
+            priority={true}
+          />
         </div>
         <div className={Style.Model_boc_right}>
           <h1>
@@ -43,6 +49,7 @@ const Modal = ({
                   alt="username"
                   width={30}
                   height={30}
+                  priority={true}
                 />
                 <input
                   type="text"
@@ -56,6 +63,7 @@ const Modal = ({
                   alt="account"
                   width={30}
                   height={30}
+                  priority={true}
                 />
                 <input
                   type="text"
@@ -67,9 +75,10 @@ const Modal = ({
                 <button onClick={() => functionName(name, accountAddress)}>
                   <Image
                     src={images.send}
-                    alt="loader"
+                    alt="send"
                     width={30}
                     height={30}
+                    priority={true}
                   />
                   Submit
                 </button>
@@ -79,6 +88,7 @@ const Modal = ({
                     alt="close"
                     width={30}
                     height={30}
+                    priority={true}
                   />
                   Cancel
                 </button>
