@@ -7,6 +7,7 @@ const ChatApp = () => {
   return (
     <div>
       <Filter/>
+      <Friend/>
     </div>
   )
 }

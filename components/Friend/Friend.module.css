@@ -1,0 +1,116 @@
+.Friend {
+    width: 100%;
+    height: 88vh;
+    background-color: rgba(23, 23, 28, 0.95);
+    position: relative;
+}
+
+.Friend_box {
+    width: 85%;
+    height: 85%;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Friend_box_left {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #F18303 rgba(255, 255, 255, 0.1);
+}
+
+/* Custom scrollbar for webkit browsers */
+.Friend_box_left::-webkit-scrollbar {
+    width: 6px;
+}
+
+.Friend_box_left::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.Friend_box_left::-webkit-scrollbar-thumb {
+    background-color: #F18303;
+    border-radius: 3px;
+}
+
+.Friend_box_right {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .Friend_box {
+        width: 90%;
+        grid-template-columns: 1.2fr 2fr;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .Friend_box {
+        width: 95%;
+        grid-template-columns: 1.5fr 2fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Friend {
+        height: auto;
+        min-height: 88vh;
+        padding: 1rem 0;
+    }
+
+    .Friend_box {
+        position: relative;
+        transform: none;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: auto;
+        min-height: 85vh;
+        grid-template-columns: 1fr;
+        margin: 1rem auto;
+    }
+
+    .Friend_box_left {
+        max-height: 30vh;
+    }
+
+    .Friend_box_right {
+        height: 55vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Friend {
+        padding: 0.5rem 0;
+    }
+
+    .Friend_box {
+        width: 95%;
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .Friend_box_left,
+    .Friend_box_right {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+}

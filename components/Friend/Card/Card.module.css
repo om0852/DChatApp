@@ -1,0 +1,143 @@
+.Card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.Card:hover {
+    background-color: rgba(241, 131, 3, 0.1);
+    border-color: rgba(241, 131, 3, 0.2);
+    transform: translateX(3px);
+}
+
+.Card_box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.Card_box_left {
+    border-radius: 50%;
+    padding: 0.2rem;
+    border: 2px solid #F18303;
+    transition: all 0.3s ease;
+}
+
+.Card:hover .Card_box_left {
+    transform: scale(1.1);
+}
+
+.Card_box_left img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Card_box_right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.Card_box_right_middle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.Card_box_right_middle h4 {
+    color: #F18303;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.Card_box_right_middle small {
+    color: #d1d1d1;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.Card_box_right_end {
+    background-color: rgba(241, 131, 3, 0.2);
+    color: #F18303;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    height: fit-content;
+    min-width: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.Card:hover .Card_box_right_end {
+    background-color: rgba(241, 131, 3, 0.3);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .Card {
+        padding: 0.8rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .Card_box {
+        gap: 0.8rem;
+    }
+
+    .Card_box_left {
+        padding: 0.15rem;
+    }
+
+    .Card_box_right_middle h4 {
+        font-size: 1rem;
+    }
+
+    .Card_box_right_middle small {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Card {
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        border-radius: 0.6rem;
+    }
+
+    .Card_box {
+        gap: 0.6rem;
+    }
+
+    .Card_box_left {
+        border-width: 1px;
+    }
+
+    .Card_box_right_middle h4 {
+        font-size: 0.9rem;
+    }
+
+    .Card_box_right_middle small {
+        font-size: 0.7rem;
+    }
+
+    .Card_box_right_end {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+        min-width: 1.5rem;
+    }
+}
+
+/* Active State */
+.Card:active {
+    transform: translateX(0);
+    background-color: rgba(241, 131, 3, 0.15);
+}
